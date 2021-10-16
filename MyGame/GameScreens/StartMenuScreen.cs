@@ -55,7 +55,7 @@ namespace MyGame.GameScreens
             _startGame = new LinkLabel() 
             { 
                 Text = "The story begins",
-                Size = _startGame.SpriteFont.MeasureString(_startGame.Text)
+                Size = new Vector2(100, 20),
             };
             _startGame.Selected += new EventHandler(menuItem_Selected);
 
@@ -64,7 +64,7 @@ namespace MyGame.GameScreens
             _loadGame = new LinkLabel()
             {
                 Text = "The story continues",
-                Size = _loadGame.SpriteFont.MeasureString(_loadGame.Text)
+                Size = new Vector2(100, 20),
             };
             _loadGame.Selected += menuItem_Selected;
 
@@ -73,7 +73,7 @@ namespace MyGame.GameScreens
             _exitGame = new LinkLabel()
             {
                 Text = "The story ends",
-                Size = _exitGame.SpriteFont.MeasureString(_exitGame.Text)
+                Size = new Vector2(100, 20),
             };
             _exitGame.Selected += menuItem_Selected;
 

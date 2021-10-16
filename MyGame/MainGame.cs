@@ -47,6 +47,7 @@ namespace MyGame
 
             Window.IsBorderless = true;
             Window.Position = new Point(40, 10);
+            IsMouseVisible = true;
 
             Content.RootDirectory = "Content";
 

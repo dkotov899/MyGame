@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
+using MyGame.Input;
 using MyGame.GameStates;
 
 namespace MyGame.GameScreens
@@ -14,17 +16,25 @@ namespace MyGame.GameScreens
         public SplashScreen(Game game, GameStateManager manager)
             : base(game, manager)
         {
-            _content = GameRef.Content;
+
         }
 
         protected override void LoadContent()
         {
+            _content = GameRef.Content;
             _backgroundImage = _content.Load<Texture2D>("SplashScreen/SplashScreen");
             base.LoadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
+            ControlManager.Update(gameTime, PlayerIndex.One);
+
+            if (InputHandler.KeyReleased(Keys.Enter))
+            {
+                StateManager.PushState(GameRef.StartMenuScreen);
+            }
+
             base.Update(gameTime);
         }
 
