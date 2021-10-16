@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -6,6 +7,8 @@ namespace MyGame.Controls
 {
     public class ControlManager : List<Control>
     {
+        public event EventHandler FocusChanged;
+
         private int _selectedControl = 0;
         private static SpriteFont _spriteFont;
 
@@ -85,6 +88,11 @@ namespace MyGame.Controls
 
                 if (this[_selectedControl].TabStop && this[_selectedControl].Enabled)
                 {
+                    if (FocusChanged != null)
+                    {
+                        FocusChanged(this[_selectedControl], null);
+                    }    
+
                     break;
                 }
 
@@ -114,6 +122,11 @@ namespace MyGame.Controls
 
                 if (this[_selectedControl].TabStop && this[_selectedControl].Enabled)
                 {
+                    if (FocusChanged != null)
+                    {
+                        FocusChanged(this[_selectedControl], null);
+                    }
+
                     break;
                 }
 

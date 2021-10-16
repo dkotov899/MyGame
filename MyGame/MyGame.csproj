@@ -79,7 +79,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\Control.cs" />
+    <Compile Include="Controls\ControlManager.cs" />
+    <Compile Include="Controls\Label.cs" />
+    <Compile Include="Controls\LinkLabel.cs" />
     <Compile Include="GameScreens\SplashScreen.cs" />
+    <Compile Include="GameScreens\StartMenuScreen.cs" />
     <Compile Include="GameStates\BaseGameState.cs" />
     <Compile Include="GameStates\GameState.cs" />
     <Compile Include="GameStates\GameStateManager.cs" />
