@@ -29,6 +29,7 @@ namespace MyGame
 
         public SplashScreen SplashScreen { get; private set; }
         public StartMenuScreen StartMenuScreen { get; private set; }
+        public GamePlayScreen GamePlayScreen { get; private set; }
 
         //------------------
         // C O N S T R U C T
@@ -53,6 +54,7 @@ namespace MyGame
 
             SplashScreen = new SplashScreen(this, _gameStateManager);
             StartMenuScreen = new StartMenuScreen(this, _gameStateManager);
+            GamePlayScreen = new GamePlayScreen(this, _gameStateManager);
 
             _gameStateManager.ChangeState(SplashScreen);
         }
