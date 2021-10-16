@@ -6,18 +6,18 @@ namespace MyGame.Controls
 {
     public abstract class Control
     {
-        protected string _name;
-        protected string _text;
-        protected Vector2 _size;
-        protected Vector2 _position;
-        protected object _value;
-        protected bool _hasFocus;
-        protected bool _enabled;
-        protected bool _visible;
-        protected bool _tabStop;
-        protected SpriteFont _spriteFont;
-        protected Color _color;
-        protected string _type;
+        private string _name;
+        private string _text;
+        private Vector2 _size;
+        private Vector2 _position;
+        private object _value;
+        private bool _hasFocus;
+        private bool _enabled;
+        private bool _visible;
+        private bool _tabStop;
+        private SpriteFont _spriteFont;
+        private Color _color;
+        private string _type;
 
         public event EventHandler Selected;
 
