@@ -78,7 +78,7 @@ namespace MyGame
         //--------
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.White);
+            GraphicsDevice.Clear(Color.White );
 
             _spriteBatch.Begin();
             ScreenManager.Instance.Draw(_spriteBatch);
