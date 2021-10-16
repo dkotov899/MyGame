@@ -28,6 +28,7 @@ namespace MyGame
         public SpriteBatch SpriteBatch { get { return _spriteBatch; } }
 
         public SplashScreen SplashScreen { get; private set; }
+        public StartMenuScreen StartMenuScreen { get; private set; }
 
         //------------------
         // C O N S T R U C T
@@ -51,6 +52,8 @@ namespace MyGame
             Components.Add(new InputHandler(this));
 
             SplashScreen = new SplashScreen(this, _gameStateManager);
+            StartMenuScreen = new StartMenuScreen(this, _gameStateManager);
+
             _gameStateManager.ChangeState(SplashScreen);
         }
 
