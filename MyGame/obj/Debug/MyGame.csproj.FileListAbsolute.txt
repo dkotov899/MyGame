@@ -4,8 +4,6 @@ C:\Users\Administator\source\repos\MyGame\MyGame\obj\Debug\MyGame.exe.config
 C:\Users\Administator\source\repos\MyGame\MyGame\obj\Debug\MyGame.csproj.CoreCompileInputs.cache
 C:\Users\Administator\source\repos\MyGame\MyGame\obj\Debug\MyGame.exe
 C:\Users\Administator\source\repos\MyGame\MyGame\obj\Debug\MyGame.pdb
-C:\Users\Administator\source\repos\MyGame\MyGame\Content\Background\game_background_1.xnb
-C:\Users\Administator\source\repos\MyGame\MyGame\Content\SplashScreen\SplashScreen.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\MyGame.exe.config
 C:\Users\Administator\source\repos\MyGame\MyGame\MyGame.exe
 C:\Users\Administator\source\repos\MyGame\MyGame\MyGame.pdb
