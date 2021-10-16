@@ -12,16 +12,19 @@ namespace MyGame.GameScreens
     {
         private Texture2D _backgroundImage;
         private ContentManager _content;
+        private SpriteFont _spriteFont;
+        private string _text;
 
         public SplashScreen(Game game, GameStateManager manager)
             : base(game, manager)
         {
-
+            _text = "Press Enter to continue...";
         }
 
         protected override void LoadContent()
         {
             _content = GameRef.Content;
+            _spriteFont = _content.Load<SpriteFont>("Fonts/ControlFont");
             _backgroundImage = _content.Load<Texture2D>("SplashScreen/SplashScreen");
             base.LoadContent();
         }
@@ -46,6 +49,12 @@ namespace MyGame.GameScreens
             GameRef.SpriteBatch.Draw(
                 _backgroundImage,
                 GameRef.ScreenRectangle,
+                Color.White);
+
+            GameRef.SpriteBatch.DrawString(
+                _spriteFont,
+                _text,
+                new Vector2(1280 / 2 - 150, 680),
                 Color.White);
 
             GameRef.SpriteBatch.End();
