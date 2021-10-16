@@ -14,11 +14,13 @@ namespace MyGame.Controls
             get { return _image; }
             set { _image = value; }
         }
+
         public Rectangle SourceRectangle
         {
             get { return _sourceRect; }
             set { _sourceRect = value; }
         }
+
         public Rectangle DestinationRectangle
         {
             get { return _destRect; }

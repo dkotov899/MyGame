@@ -100,6 +100,22 @@ namespace MyGame
             GraphicsDevice.Clear(Color.Black);
 
             base.Draw(gameTime);
+
+            float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            _frameCount++;
+            _timeSinceLastUpdate += elapsed;
+
+            if (_timeSinceLastUpdate > _updateInterval)
+            {
+                _fps = _frameCount / _timeSinceLastUpdate;
+
+                System.Diagnostics.Debug.WriteLine("FPS: " + _fps.ToString());
+                this.Window.Title = "FPS: " + _fps.ToString();
+
+                _frameCount = 0;
+                _timeSinceLastUpdate -= _updateInterval;
+            }
         }
     }
 }
