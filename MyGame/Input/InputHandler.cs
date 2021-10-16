@@ -10,8 +10,8 @@ namespace MyGame.Input
         private static KeyboardState _keyboardState;
         private static KeyboardState _lastKeyboardState;
 
-        private static MouseState mouseState;
-        private static MouseState lastMouseState;
+        private static MouseState _mouseState;
+        private static MouseState _lastMouseState;
 
         public static KeyboardState KeyboardState
         {
@@ -25,19 +25,19 @@ namespace MyGame.Input
 
         public static MouseState MouseState
         {
-            get { return mouseState; }
+            get { return _mouseState; }
         }
 
         public static MouseState LastMouseState
         {
-            get { return lastMouseState; }
+            get { return _lastMouseState; }
         }
 
         public InputHandler(Game game)
         : base(game)
         {
             _keyboardState = Keyboard.GetState();
-            mouseState = Mouse.GetState();
+            _mouseState = Mouse.GetState();
         }
 
         public override void Initialize()
@@ -50,8 +50,8 @@ namespace MyGame.Input
             _lastKeyboardState = _keyboardState;
             _keyboardState = Keyboard.GetState();
 
-            lastMouseState = mouseState;
-            mouseState = Mouse.GetState();
+            _lastMouseState = _mouseState;
+            _mouseState = Mouse.GetState();
 
             base.Update(gameTime);
         }
@@ -59,7 +59,7 @@ namespace MyGame.Input
         public static void Flush()
         {
             _lastKeyboardState = _keyboardState;
-            lastMouseState = mouseState;
+            _lastMouseState = _mouseState;
         }
 
         public static bool KeyReleased(Keys key)
@@ -81,22 +81,22 @@ namespace MyGame.Input
 
         public static Point MouseAsPoint
         {
-            get { return new Point(mouseState.X, mouseState.Y); }
+            get { return new Point(_mouseState.X, _mouseState.Y); }
         }
 
         public static Vector2 MouseAsVector2
         {
-            get { return new Vector2(mouseState.X, mouseState.Y); }
+            get { return new Vector2(_mouseState.X, _mouseState.Y); }
         }
 
         public static Point LastMouseAsPoint
         {
-            get { return new Point(lastMouseState.X, lastMouseState.Y); }
+            get { return new Point(_lastMouseState.X, _lastMouseState.Y); }
         }
 
         public static Vector2 LastMouseAsVector2
         {
-            get { return new Vector2(lastMouseState.X, lastMouseState.Y); }
+            get { return new Vector2(_lastMouseState.X, _lastMouseState.Y); }
         }
 
         public static bool CheckMousePress(MouseButton button)
@@ -107,22 +107,22 @@ namespace MyGame.Input
             {
                 case MouseButton.Left:
 
-                    result = mouseState.LeftButton == ButtonState.Pressed &&
-                        lastMouseState.LeftButton == ButtonState.Released;
+                    result = _mouseState.LeftButton == ButtonState.Pressed &&
+                        _lastMouseState.LeftButton == ButtonState.Released;
 
                     break;
 
                 case MouseButton.Right:
 
-                    result = mouseState.RightButton == ButtonState.Pressed &&
-                        lastMouseState.RightButton == ButtonState.Released;
+                    result = _mouseState.RightButton == ButtonState.Pressed &&
+                        _lastMouseState.RightButton == ButtonState.Released;
 
                     break;
 
                 case MouseButton.Middle:
 
-                    result = mouseState.MiddleButton == ButtonState.Pressed &&
-                        lastMouseState.MiddleButton == ButtonState.Released;
+                    result = _mouseState.MiddleButton == ButtonState.Pressed &&
+                        _lastMouseState.MiddleButton == ButtonState.Released;
 
                     break;
             }
@@ -138,22 +138,22 @@ namespace MyGame.Input
             {
                 case MouseButton.Left:
 
-                    result = mouseState.LeftButton == ButtonState.Released &&
-                        lastMouseState.LeftButton == ButtonState.Pressed;
+                    result = _mouseState.LeftButton == ButtonState.Released &&
+                        _lastMouseState.LeftButton == ButtonState.Pressed;
 
                     break;
 
                 case MouseButton.Right:
 
-                    result = mouseState.RightButton == ButtonState.Released &&
-                        lastMouseState.RightButton == ButtonState.Pressed;
+                    result = _mouseState.RightButton == ButtonState.Released &&
+                        _lastMouseState.RightButton == ButtonState.Pressed;
 
                     break;
 
                 case MouseButton.Middle:
 
-                    result = mouseState.MiddleButton == ButtonState.Released &&
-                        lastMouseState.MiddleButton == ButtonState.Pressed;
+                    result = _mouseState.MiddleButton == ButtonState.Released &&
+                        _lastMouseState.MiddleButton == ButtonState.Pressed;
 
                     break;
             }
@@ -169,19 +169,19 @@ namespace MyGame.Input
             {
                 case MouseButton.Left:
 
-                    result = mouseState.LeftButton == ButtonState.Pressed;
+                    result = _mouseState.LeftButton == ButtonState.Pressed;
 
                     break;
 
                 case MouseButton.Right:
 
-                    result = mouseState.RightButton == ButtonState.Pressed;
+                    result = _mouseState.RightButton == ButtonState.Pressed;
 
                     break;
 
                 case MouseButton.Middle:
 
-                    result = mouseState.MiddleButton == ButtonState.Pressed;
+                    result = _mouseState.MiddleButton == ButtonState.Pressed;
 
                     break;
             }
@@ -197,19 +197,19 @@ namespace MyGame.Input
             {
                 case MouseButton.Left:
 
-                    result = mouseState.LeftButton == ButtonState.Released;
+                    result = _mouseState.LeftButton == ButtonState.Released;
 
                     break;
 
                 case MouseButton.Right:
 
-                    result = mouseState.RightButton == ButtonState.Released;
+                    result = _mouseState.RightButton == ButtonState.Released;
 
                     break;
 
                 case MouseButton.Middle:
 
-                    result = mouseState.MiddleButton == ButtonState.Released;
+                    result = _mouseState.MiddleButton == ButtonState.Released;
 
                     break;
             }
