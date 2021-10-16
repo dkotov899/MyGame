@@ -1,2 +1,2 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/Administator/source/repos/MyGame/MyGame/Content/SplashScreen/SplashScreen.png","C:/Users/Administator/source/repos/MyGame/MyGame/Content/bin/DesktopGL/SplashScreen/SplashScreen.xnb","TextureProcessor","Texture2DContent",905188,8294485,0,9755191
+"C:/Users/Administator/source/repos/MyGame/MyGame/Content/Fonts/ControlFont.spritefont","C:/Users/Administator/source/repos/MyGame/MyGame/Content/bin/DesktopGL/Fonts/ControlFont.xnb","FontDescriptionProcessor","SpriteFontContent",2008,21538,0,6039099

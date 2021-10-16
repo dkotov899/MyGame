@@ -7,10 +7,10 @@ namespace MyGame.Controls
 {
     public class ControlManager : List<Control>
     {
-        public event EventHandler FocusChanged;
-
         private int _selectedControl = 0;
         private static SpriteFont _spriteFont;
+
+        public event EventHandler FocusChanged;
 
         public static SpriteFont SpriteFont
         {

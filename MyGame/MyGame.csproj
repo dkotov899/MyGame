@@ -83,6 +83,8 @@
     <Compile Include="Controls\ControlManager.cs" />
     <Compile Include="Controls\Label.cs" />
     <Compile Include="Controls\LinkLabel.cs" />
+    <Compile Include="Controls\PictureBox.cs" />
+    <Compile Include="GameScreens\GamePlayScreen.cs" />
     <Compile Include="GameScreens\SplashScreen.cs" />
     <Compile Include="GameScreens\StartMenuScreen.cs" />
     <Compile Include="GameStates\BaseGameState.cs" />

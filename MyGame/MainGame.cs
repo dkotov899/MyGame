@@ -10,10 +10,10 @@ namespace MyGame
 {
     public class MainGame : Game
     {
-        private float fps;
-        private float updateInterval = 1.0f;
-        private float timeSinceLastUpdate = 0.0f;
-        private float frameCount = 0;
+        private float _fps;
+        private float _updateInterval = 1.0f;
+        private float _timeSinceLastUpdate = 0.0f;
+        private float _frameCount = 0;
 
         private SpriteBatch _spriteBatch;
         private GraphicsDeviceManager _graphics;
@@ -97,7 +97,6 @@ namespace MyGame
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-
 
             base.Draw(gameTime);
         }

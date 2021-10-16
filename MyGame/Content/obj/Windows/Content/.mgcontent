@@ -4,9 +4,21 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/Administator/source/repos/MyGame/MyGame/Content/Background/BackgroundMenu.png</File>
+    <File>C:/Users/Administator/source/repos/MyGame/MyGame/Content/Fonts/ControlFont.spritefont</File>
+    <File>C:/Users/Administator/source/repos/MyGame/MyGame/Content/GUI/LeftarrowUp.png</File>
+    <File>C:/Users/Administator/source/repos/MyGame/MyGame/Content/GUI/ListBoxImage.png</File>
+    <File>C:/Users/Administator/source/repos/MyGame/MyGame/Content/GUI/RightarrowUp.png</File>
+    <File>C:/Users/Administator/source/repos/MyGame/MyGame/Content/GUI/StopBar.png</File>
     <File>C:/Users/Administator/source/repos/MyGame/MyGame/Content/SplashScreen/SplashScreen.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>
