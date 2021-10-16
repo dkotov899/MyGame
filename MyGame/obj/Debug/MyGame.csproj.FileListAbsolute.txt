@@ -35,3 +35,4 @@ C:\Users\Administator\source\repos\MyGame\MyGame\SharpDX.XAudio2.pdb
 C:\Users\Administator\source\repos\MyGame\MyGame\SharpDX.XAudio2.xml
 C:\Users\Administator\source\repos\MyGame\MyGame\SharpDX.XInput.pdb
 C:\Users\Administator\source\repos\MyGame\MyGame\SharpDX.XInput.xml
+C:\Users\Administator\source\repos\MyGame\MyGame\Content\SplashScreen\SplashScreen.xnb
