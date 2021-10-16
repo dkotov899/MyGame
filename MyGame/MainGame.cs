@@ -4,13 +4,21 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MyGame
 {
-    internal class MainGame : Game
+    public class MainGame : Game
     {
+        private float fps;
+        private float updateInterval = 1.0f;
+        private float timeSinceLastUpdate = 0.0f;
+        private float frameCount = 0;
+
         private SpriteBatch _spriteBatch;
         private GraphicsDeviceManager _graphics;
 
         public const int ScreenWidth = 1280;
         public const int ScreenHeight = 720;
+
+        public readonly Rectangle ScreenRectangle =
+            new Rectangle(0, 0, ScreenWidth, ScreenHeight);
 
         public SpriteBatch SpriteBatch { get { return _spriteBatch; } }
 
