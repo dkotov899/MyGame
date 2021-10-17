@@ -6,7 +6,6 @@ using MyGame.Input;
 using MyGame.GameStates;
 using MyGame.GameScreens;
 using MyGame.Audio;
-using Microsoft.Xna.Framework.Media;
 
 namespace MyGame
 {
@@ -26,6 +25,8 @@ namespace MyGame
 
         public readonly Rectangle ScreenRectangle =
             new Rectangle(0, 0, ScreenWidth, ScreenHeight);
+
+        public Sound Sound { get; private set; } = new Sound();
 
         public SpriteBatch SpriteBatch { get { return _spriteBatch; } }
 
@@ -77,9 +78,7 @@ namespace MyGame
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // LOAD SOUND AND MUSIC
-            Sound.Load(Content);
-            MediaPlayer.Play(Sound.Music);
+            Sound.LoadContent(Content);
         }
 
         //--------
