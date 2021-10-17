@@ -89,7 +89,7 @@ namespace MyGame.GameScreens
             ControlManager_FocusChanged(startGame, null);
         }
 
-        void ControlManager_FocusChanged(object sender, EventArgs e)
+        private void ControlManager_FocusChanged(object sender, EventArgs e)
         {
             Control control = sender as Control;
 

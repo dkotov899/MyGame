@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+
+using MyGame.Input;
 
 namespace MyGame.Controls
 {
     public class ControlManager : List<Control>
     {
         private int _selectedControl = 0;
+        private bool _acceptInput = true;
         private static SpriteFont _spriteFont;
 
         public event EventHandler FocusChanged;
@@ -15,6 +19,12 @@ namespace MyGame.Controls
         public static SpriteFont SpriteFont
         {
             get { return _spriteFont; }
+        }
+
+        public bool AcceptInput
+        {
+            get { return _acceptInput; }
+            set { _acceptInput = value; }
         }
 
         public ControlManager(SpriteFont spriteFont)
@@ -54,8 +64,26 @@ namespace MyGame.Controls
                     c.HandleInput(playerIndex);
                 }
             }
-        }
 
+            if (!AcceptInput)
+            {
+                return;
+            }
+
+            if (InputHandler.ButtonPressed(Buttons.LeftThumbstickUp, playerIndex) ||
+                InputHandler.ButtonPressed(Buttons.DPadUp, playerIndex) ||
+                InputHandler.KeyPressed(Keys.Up))
+            {
+                PreviousControl();
+            }
+
+            if (InputHandler.ButtonPressed(Buttons.LeftThumbstickDown, playerIndex) ||
+                InputHandler.ButtonPressed(Buttons.DPadDown, playerIndex) ||
+                InputHandler.KeyPressed(Keys.Down))
+            {
+                NextControl();
+            }
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (Control c in this)
@@ -91,11 +119,10 @@ namespace MyGame.Controls
                     if (FocusChanged != null)
                     {
                         FocusChanged(this[_selectedControl], null);
-                    }    
+                    }
 
                     break;
                 }
-
             } while (currentControl != _selectedControl);
 
             this[_selectedControl].HasFocus = true;
@@ -129,7 +156,6 @@ namespace MyGame.Controls
 
                     break;
                 }
-
             } while (currentControl != _selectedControl);
 
             this[_selectedControl].HasFocus = true;

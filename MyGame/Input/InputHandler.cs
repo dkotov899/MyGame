@@ -1,17 +1,21 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace MyGame.Input
 {
     public enum MouseButton { Left, Middle, Right }
 
-    public class InputHandler : GameComponent
+    public class InputHandler : Microsoft.Xna.Framework.GameComponent
     {
         private static KeyboardState _keyboardState;
         private static KeyboardState _lastKeyboardState;
 
         private static MouseState _mouseState;
         private static MouseState _lastMouseState;
+
+        private static GamePadState[] _gamePadStates;
+        private static GamePadState[] _lastGamePadStates;
 
         public static KeyboardState KeyboardState
         {
@@ -33,11 +37,27 @@ namespace MyGame.Input
             get { return _lastMouseState; }
         }
 
+        public static GamePadState[] GamePadStates
+        {
+            get { return _gamePadStates; }
+        }
+
+        public static GamePadState[] LastGamePadStates
+        {
+            get { return _lastGamePadStates; }
+        }
+
         public InputHandler(Game game)
-        : base(game)
+            : base(game)
         {
             _keyboardState = Keyboard.GetState();
+            _gamePadStates = new GamePadState[Enum.GetValues(typeof(PlayerIndex)).Length];
             _mouseState = Mouse.GetState();
+
+            foreach (PlayerIndex index in Enum.GetValues(typeof(PlayerIndex)))
+            {
+                _gamePadStates[(int)index] = GamePad.GetState(index);
+            }
         }
 
         public override void Initialize()
@@ -52,6 +72,13 @@ namespace MyGame.Input
 
             _lastMouseState = _mouseState;
             _mouseState = Mouse.GetState();
+
+            _lastGamePadStates = (GamePadState[])_gamePadStates.Clone();
+
+            foreach (PlayerIndex index in Enum.GetValues(typeof(PlayerIndex)))
+            {
+                _gamePadStates[(int)index] = GamePad.GetState(index);
+            }
 
             base.Update(gameTime);
         }
@@ -106,27 +133,18 @@ namespace MyGame.Input
             switch (button)
             {
                 case MouseButton.Left:
-
                     result = _mouseState.LeftButton == ButtonState.Pressed &&
                         _lastMouseState.LeftButton == ButtonState.Released;
-
                     break;
-
                 case MouseButton.Right:
-
                     result = _mouseState.RightButton == ButtonState.Pressed &&
                         _lastMouseState.RightButton == ButtonState.Released;
-
                     break;
-
                 case MouseButton.Middle:
-
                     result = _mouseState.MiddleButton == ButtonState.Pressed &&
                         _lastMouseState.MiddleButton == ButtonState.Released;
-
                     break;
             }
-
             return result;
         }
 
@@ -137,24 +155,16 @@ namespace MyGame.Input
             switch (button)
             {
                 case MouseButton.Left:
-
                     result = _mouseState.LeftButton == ButtonState.Released &&
                         _lastMouseState.LeftButton == ButtonState.Pressed;
-
                     break;
-
                 case MouseButton.Right:
-
                     result = _mouseState.RightButton == ButtonState.Released &&
                         _lastMouseState.RightButton == ButtonState.Pressed;
-
                     break;
-
                 case MouseButton.Middle:
-
                     result = _mouseState.MiddleButton == ButtonState.Released &&
                         _lastMouseState.MiddleButton == ButtonState.Pressed;
-
                     break;
             }
 
@@ -168,21 +178,13 @@ namespace MyGame.Input
             switch (button)
             {
                 case MouseButton.Left:
-
                     result = _mouseState.LeftButton == ButtonState.Pressed;
-
                     break;
-
                 case MouseButton.Right:
-
                     result = _mouseState.RightButton == ButtonState.Pressed;
-
                     break;
-
                 case MouseButton.Middle:
-
                     result = _mouseState.MiddleButton == ButtonState.Pressed;
-
                     break;
             }
 
@@ -196,25 +198,34 @@ namespace MyGame.Input
             switch (button)
             {
                 case MouseButton.Left:
-
                     result = _mouseState.LeftButton == ButtonState.Released;
-
                     break;
-
                 case MouseButton.Right:
-
                     result = _mouseState.RightButton == ButtonState.Released;
-
                     break;
-
                 case MouseButton.Middle:
-
                     result = _mouseState.MiddleButton == ButtonState.Released;
-
                     break;
             }
 
             return result;
+        }
+
+        public static bool ButtonReleased(Buttons button, PlayerIndex index)
+        {
+            return _gamePadStates[(int)index].IsButtonUp(button) &&
+            _lastGamePadStates[(int)index].IsButtonDown(button);
+        }
+
+        public static bool ButtonPressed(Buttons button, PlayerIndex index)
+        {
+            return _gamePadStates[(int)index].IsButtonDown(button) &&
+            _lastGamePadStates[(int)index].IsButtonUp(button);
+        }
+
+        public static bool ButtonDown(Buttons button, PlayerIndex index)
+        {
+            return _gamePadStates[(int)index].IsButtonDown(button);
         }
     }
 }
