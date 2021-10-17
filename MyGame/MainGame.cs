@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework.Graphics;
 using MyGame.Input;
 using MyGame.GameStates;
 using MyGame.GameScreens;
+using MyGame.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace MyGame
 {
@@ -74,6 +76,10 @@ namespace MyGame
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            // LOAD SOUND AND MUSIC
+            Sound.Load(Content);
+            MediaPlayer.Play(Sound.Music);
         }
 
         //--------
