@@ -45,3 +45,4 @@ C:\Users\Administator\source\repos\MyGame\MyGame\Content\Fonts\ControlFont.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\GUI\Rectangle-black.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\Musics\MusicMain.wma
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\Musics\MusicMain.xnb
+C:\Users\Administator\source\repos\MyGame\MyGame\Content\Player\malerogue.xnb

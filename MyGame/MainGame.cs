@@ -78,7 +78,7 @@ namespace MyGame
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            Sound.LoadContent(Content);
+            //Sound.LoadContent(Content);
         }
 
         //--------
