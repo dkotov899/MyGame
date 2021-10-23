@@ -81,7 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audio\Sound.cs" />
-    <Compile Include="Components\Monsters\MonsterBase.cs" />
+    <Compile Include="Components\Monsters\MonsterFighter.cs" />
     <Compile Include="Components\Players\Player.cs" />
     <Compile Include="Components\Traps\TrapBase.cs" />
     <Compile Include="Controls\Control.cs" />

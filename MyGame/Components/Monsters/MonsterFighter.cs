@@ -5,16 +5,14 @@ using MyGame.Input;
 using MyGame.Sprites;
 using System.Collections.Generic;
 
-namespace MyGame.Components.Players
+namespace MyGame.Components.Monsters
 {
-    public class Player
+    public class MonsterFighter
     {
         private MainGame _gameRef;
         private AnimatedSprite _sprite;
 
-        public int Gold { get; set; }
-
-        public Player(Game game)
+        public MonsterFighter(Game game)
         {
             _gameRef = (MainGame)game;
         }
@@ -26,7 +24,7 @@ namespace MyGame.Components.Players
 
         public void LoadContent()
         {
-            var spriteSheet = _gameRef.Content.Load<Texture2D>("Player/malerogue");
+            var spriteSheet = _gameRef.Content.Load<Texture2D>("Monsters/malefighter");
 
             Dictionary<AnimationKey, Animation> animations =
                 new Dictionary<AnimationKey, Animation>();
@@ -50,7 +48,7 @@ namespace MyGame.Components.Players
         {
             _sprite.Update(gameTime);
 
-            var motion = new Vector2();
+            var motion = new Vector2(50, 50);
 
             if (InputHandler.KeyDown(Keys.W))
             {
@@ -93,11 +91,6 @@ namespace MyGame.Components.Players
         public void Draw(GameTime gameTime)
         {
             _sprite.Draw(gameTime, _gameRef.SpriteBatch);
-        }
-
-        public void updateGold(int gold)
-        {
-            Gold += gold;
         }
     }
 }
