@@ -48,7 +48,7 @@ namespace MyGame
 
             _gameStateManager = new GameStateManager(this);
 
-            Window.IsBorderless = true;
+            Window.IsBorderless = false;
             Window.Position = new Point(40, 10);
             IsMouseVisible = true;
 

@@ -104,6 +104,18 @@
 /processorParam:TextureFormat=Color
 /build:Monsters/malefighter.png
 
+#begin Monsters/malewizard.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Monsters/malewizard.png
+
 #begin Mosters/malefighter.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -1,11 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using MyGame.Components.Monsters;
 using MyGame.Components.Players;
 using MyGame.GameStates;
-using MyGame.Input;
-using MyGame.Sprites;
 using System.Collections.Generic;
 
 namespace MyGame.GameScreens
@@ -13,13 +9,37 @@ namespace MyGame.GameScreens
     public class GamePlayScreen : BaseGameState
     {
         private Player _player;
-        private MonsterFighter _monsterFighter;
+        private List<Monster> _monsters;
 
         public GamePlayScreen(Game game, GameStateManager manager)
             : base(game, manager)
         {
             _player = new Player(game);
-            _monsterFighter = new MonsterFighter(game);
+
+            _monsters = new List<Monster>()
+            {
+                new Monster(game,
+                    new Vector2(30, 30),
+                    MonsterType.Fighter,
+                    new MonsterAction[]
+                    { 
+                        MonsterAction.WalkRight,
+                        MonsterAction.WalkDown,
+                        MonsterAction.WalkLeft,
+                        MonsterAction.WalkUp,
+                    }),
+
+                new Monster(game,
+                    new Vector2(30, 30),
+                    MonsterType.Wizard,
+                    new MonsterAction[]
+                    {
+                        MonsterAction.WalkDown,
+                        MonsterAction.WalkRight,
+                        MonsterAction.WalkUp,
+                        MonsterAction.WalkLeft,
+                    }),
+            };
         }
 
         public override void Initialize()
@@ -30,15 +50,16 @@ namespace MyGame.GameScreens
         protected override void LoadContent()
         {
             _player.LoadContent();
-            _monsterFighter.LoadContent();
+
+            _monsters.ForEach(x => x.LoadContent());
+
             base.LoadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
             _player.Update(gameTime);
-            _monsterFighter.Update(gameTime);
-
+            _monsters.ForEach(x => x.Update(gameTime));
             base.Update(gameTime);
         }
 
@@ -54,7 +75,8 @@ namespace MyGame.GameScreens
                 null);
 
             _player.Draw(gameTime);
-            _monsterFighter.Draw(gameTime);
+
+            _monsters.ForEach(x => x.Draw(gameTime));
 
             base.Draw(gameTime);
 

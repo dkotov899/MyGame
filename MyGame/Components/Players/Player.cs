@@ -26,24 +26,15 @@ namespace MyGame.Components.Players
 
         public void LoadContent()
         {
-            var spriteSheet = _gameRef.Content.Load<Texture2D>("Player/malerogue");
-
-            Dictionary<AnimationKey, Animation> animations =
-                new Dictionary<AnimationKey, Animation>();
-
-            var animation = new Animation(3, 32, 32, 0, 0);
-            animations.Add(AnimationKey.Down, animation);
-
-            animation = new Animation(3, 32, 32, 0, 32);
-            animations.Add(AnimationKey.Left, animation);
-
-            animation = new Animation(3, 32, 32, 0, 64);
-            animations.Add(AnimationKey.Right, animation);
-
-            animation = new Animation(3, 32, 32, 0, 96);
-            animations.Add(AnimationKey.Up, animation);
-
-            _sprite = new AnimatedSprite(spriteSheet, animations);
+            _sprite = new AnimatedSprite(
+                _gameRef.Content.Load<Texture2D>("Player/malerogue"),
+                new Dictionary<AnimationKey, Animation>()
+                {
+                    { AnimationKey.Down, new Animation(3, 32, 32, 0, 0)  },
+                    { AnimationKey.Left, new Animation(3, 32, 32, 0, 32) },
+                    { AnimationKey.Right, new Animation(3, 32, 32, 0, 64) },
+                    { AnimationKey.Up, new Animation(3, 32, 32, 0, 96) }
+                });
         }
 
         public void Update(GameTime gameTime)
