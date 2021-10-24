@@ -40,12 +40,10 @@ C:\Users\Administator\source\repos\MyGame\MyGame\Content\Background\BackgroundMe
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\GUI\LeftarrowUp.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\GUI\ListBoxImage.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\GUI\RightarrowUp.xnb
-C:\Users\Administator\source\repos\MyGame\MyGame\Content\GUI\StopBar.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\Fonts\ControlFont.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\GUI\Rectangle-black.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\Musics\MusicMain.wma
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\Musics\MusicMain.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\Player\malerogue.xnb
-C:\Users\Administator\source\repos\MyGame\MyGame\Content\Mosters\malefighter.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\Monsters\malefighter.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\Monsters\malewizard.xnb
