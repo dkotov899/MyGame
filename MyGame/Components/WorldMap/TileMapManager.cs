@@ -7,50 +7,48 @@ namespace MyGame.Components.WorldMap
 {
     public class TileMapManager
     {
-        //All the variables which we will need
-        private SpriteBatch spriteBatch;
-        TmxMap map;
-        Texture2D tileset;
-        int tilesetTilesWide;
-        int tileWidth;
-        int tileHeight;
+        private SpriteBatch _spriteBatch;
+        private TmxMap _map;
+        private Texture2D _tileset;
+        private int _tilesetTilesWide;
+        private int _tileWidth;
+        private int _tileHeight;
 
-        public TileMapManager(SpriteBatch _spriteBatch, TmxMap _map, Texture2D _tileset, int _tilesetTilesWide, int _tileWidth, int _tileHeight)
-        //Initializing our vairiables
+        public TileMapManager(SpriteBatch spriteBatch, TmxMap map, Texture2D tileset, int tilesetTilesWide, int tileWidth, int tileHeight)
         {
-            spriteBatch = _spriteBatch;
-            map = _map;
-            tileset = _tileset;
-            tilesetTilesWide = _tilesetTilesWide;
-            tileWidth = _tileWidth;
-            tileHeight = _tileHeight;
+            _spriteBatch = spriteBatch;
+            _map = map;
+            _tileset = tileset;
+            _tilesetTilesWide = tilesetTilesWide;
+            _tileWidth = tileWidth;
+            _tileHeight = tileHeight;
         }
 
-        public void Draw()//This is where the magic happens :D
+        public void Draw()
         {
-            spriteBatch.Begin();//Strating the drawing to the screen
-            for (var i = 0; i < map.TileLayers.Count; i++)//This loops through all the tile map layers present on our tile map
+            _spriteBatch.Begin();
+
+            for (var i = 0; i < _map.TileLayers.Count; i++)
             {
-                for (var j = 0; j < map.TileLayers[i].Tiles.Count; j++)//this loops through the tiles in each tile layer
+                for (var j = 0; j < _map.TileLayers[i].Tiles.Count; j++)
                 {
-                    int gid = map.TileLayers[i].Tiles[j].Gid;//Getting the GID
-                    if (gid == 0)
+                    int gid = _map.TileLayers[i].Tiles[j].Gid;
+
+                    if (gid != 0)
                     {
-                        //If empty then do nothing
-                    }
-                    else//If not empty
-                    {//Some complex math to check for the tile position :(
                         int tileFrame = gid - 1;
-                        int column = tileFrame % tilesetTilesWide;
-                        int row = (int)Math.Floor((double)tileFrame / (double)tilesetTilesWide);
-                        float x = (j % map.Width) * map.TileWidth;
-                        float y = (float)Math.Floor(j / (double)map.Width) * map.TileHeight;
-                        Rectangle tilesetRec = new Rectangle((tileWidth) * column, (tileHeight) * row, tileWidth, tileHeight);//The origin rectangle
-                        spriteBatch.Draw(tileset, new Rectangle((int)x, (int)y, tileWidth, tileHeight), tilesetRec, Color.White);//Drawing the tile
+                        int column = tileFrame % _tilesetTilesWide;
+                        int row = (int)Math.Floor((double)tileFrame / (double)_tilesetTilesWide);
+                        float x = (j % _map.Width) * _map.TileWidth;
+                        float y = (float)Math.Floor(j / (double)_map.Width) * _map.TileHeight;
+
+                        Rectangle tilesetRec = new Rectangle((_tileWidth) * column, (_tileHeight) * row, _tileWidth, _tileHeight);
+                        _spriteBatch.Draw(_tileset, new Rectangle((int)x, (int)y, _tileWidth, _tileHeight), tilesetRec, Color.White);
                     }
                 }
             }
-            spriteBatch.End();//End of the Draw to screen
+
+            _spriteBatch.End();
         }
     }
 }

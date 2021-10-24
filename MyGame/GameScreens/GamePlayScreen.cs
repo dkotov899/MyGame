@@ -14,8 +14,8 @@ namespace MyGame.GameScreens
         private List<Monster> _monsters;
 
         private SpriteBatch _spriteBatch;
-        private TmxMap map;
-        private TileMapManager mapManager;
+        private TmxMap _map;
+        private TileMapManager _mapManager;
 
 
         public GamePlayScreen(Game game, GameStateManager manager)
@@ -56,16 +56,17 @@ namespace MyGame.GameScreens
 
         protected override void LoadContent()
         {
-
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            map = new TmxMap("Content/World/Levels/LevelOne.tmx");
-            var tileset = Game.Content.Load<Texture2D>("World/Tiles/" + map.Tilesets[0].Name.ToString());
-            var tileWidth = map.Tilesets[0].TileWidth;
-            var tileHeight = map.Tilesets[0].TileHeight;
-            var TileSetTilesWide = tileset.Width / tileWidth;
-            mapManager = new TileMapManager(_spriteBatch, map, tileset, TileSetTilesWide, tileWidth, tileHeight);
 
-            //
+            _map = new TmxMap("Content/World/Levels/LevelOne.tmx");
+
+            var tileset = Game.Content.Load<Texture2D>("World/Tiles/" + _map.Tilesets[0].Name.ToString());
+            var tileWidth = _map.Tilesets[0].TileWidth;
+            var tileHeight = _map.Tilesets[0].TileHeight;
+            var TileSetTilesWide = tileset.Width / tileWidth;
+
+            _mapManager = new TileMapManager(_spriteBatch, _map, tileset, TileSetTilesWide, tileWidth, tileHeight);
+
             _player.LoadContent();
 
             _monsters.ForEach(x => x.LoadContent());
@@ -91,7 +92,7 @@ namespace MyGame.GameScreens
                 null,
                 null);
 
-            mapManager.Draw();
+            _mapManager.Draw();
 
             _player.Draw(gameTime);
 
