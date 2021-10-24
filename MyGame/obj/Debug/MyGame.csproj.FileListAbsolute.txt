@@ -1,6 +1,5 @@
 C:\Users\Administator\source\repos\MyGame\MyGame\obj\Debug\MyGame.csproj.AssemblyReference.cache
 C:\Users\Administator\source\repos\MyGame\MyGame\obj\Debug\MyGame.csproj.SuggestedBindingRedirects.cache
-C:\Users\Administator\source\repos\MyGame\MyGame\obj\Debug\MyGame.exe.config
 C:\Users\Administator\source\repos\MyGame\MyGame\obj\Debug\MyGame.csproj.CoreCompileInputs.cache
 C:\Users\Administator\source\repos\MyGame\MyGame\obj\Debug\MyGame.exe
 C:\Users\Administator\source\repos\MyGame\MyGame\obj\Debug\MyGame.pdb
@@ -47,3 +46,6 @@ C:\Users\Administator\source\repos\MyGame\MyGame\Content\Musics\MusicMain.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\Player\malerogue.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\Monsters\malefighter.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\Monsters\malewizard.xnb
+C:\Users\Administator\source\repos\MyGame\MyGame\Content\World\Levels\LevelOne.tmx
+C:\Users\Administator\source\repos\MyGame\MyGame\Content\World\Tiles\Dungeon_Tileset.tsx
+C:\Users\Administator\source\repos\MyGame\MyGame\Content\World\Tiles\Dungeon_Tileset.xnb

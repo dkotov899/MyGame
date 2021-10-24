@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MyGame.Components.Players;
+using MyGame.Components.WorldMap;
 using MyGame.GameStates;
 using System.Collections.Generic;
+using TiledSharp;
 
 namespace MyGame.GameScreens
 {
@@ -10,6 +12,11 @@ namespace MyGame.GameScreens
     {
         private Player _player;
         private List<Monster> _monsters;
+
+        private SpriteBatch _spriteBatch;
+        private TmxMap map;
+        private TileMapManager mapManager;
+
 
         public GamePlayScreen(Game game, GameStateManager manager)
             : base(game, manager)
@@ -49,6 +56,16 @@ namespace MyGame.GameScreens
 
         protected override void LoadContent()
         {
+
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            map = new TmxMap("Content/World/Levels/LevelOne.tmx");
+            var tileset = Game.Content.Load<Texture2D>("World/Tiles/" + map.Tilesets[0].Name.ToString());
+            var tileWidth = map.Tilesets[0].TileWidth;
+            var tileHeight = map.Tilesets[0].TileHeight;
+            var TileSetTilesWide = tileset.Width / tileWidth;
+            mapManager = new TileMapManager(_spriteBatch, map, tileset, TileSetTilesWide, tileWidth, tileHeight);
+
+            //
             _player.LoadContent();
 
             _monsters.ForEach(x => x.LoadContent());
@@ -73,6 +90,8 @@ namespace MyGame.GameScreens
                 null,
                 null,
                 null);
+
+            mapManager.Draw();
 
             _player.Draw(gameTime);
 

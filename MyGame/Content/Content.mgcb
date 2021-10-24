@@ -10,6 +10,7 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:..\..\..\..\..\.nuget\packages\monogame.extended.content.pipeline\3.8.0\tools\MonoGame.Extended.Content.Pipeline.dll
 
 #---------------------------------- Content ---------------------------------#
 
@@ -133,4 +134,22 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:SplashScreen/SplashScreen.png
+
+#begin World/Levels/LevelOne.tmx
+/copy:World/Levels/LevelOne.tmx
+
+#begin World/Tiles/Dungeon_Tileset.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:World/Tiles/Dungeon_Tileset.png
+
+#begin World/Tiles/Dungeon_Tileset.tsx
+/copy:World/Tiles/Dungeon_Tileset.tsx
 
