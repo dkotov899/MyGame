@@ -16,12 +16,16 @@ namespace MyGame.GameScreens
         private SpriteBatch _spriteBatch;
         private TmxMap _map;
         private TileMapManager _mapManager;
+        private List<Rectangle> _collisionObjects;
+
+        private Game _gameRef;
 
 
         public GamePlayScreen(Game game, GameStateManager manager)
             : base(game, manager)
         {
-            _player = new Player(game);
+
+            _gameRef = game;
 
             _monsters = new List<Monster>()
             {
@@ -67,9 +71,18 @@ namespace MyGame.GameScreens
 
             _mapManager = new TileMapManager(_spriteBatch, _map, tileset, TileSetTilesWide, tileWidth, tileHeight);
 
+            _collisionObjects = new List<Rectangle>();
+
+            foreach (var o in _map.ObjectGroups["Collisions"].Objects)
+            {
+                _collisionObjects.Add(new Rectangle((int)o.X, (int)o.Y, (int)o.Width, (int)o.Height));
+            }
+
+            _player = new Player(_gameRef, _collisionObjects);
+
             _player.LoadContent();
 
-            _monsters.ForEach(x => x.LoadContent());
+            //_monsters.ForEach(x => x.LoadContent());
 
             base.LoadContent();
         }
@@ -77,7 +90,7 @@ namespace MyGame.GameScreens
         public override void Update(GameTime gameTime)
         {
             _player.Update(gameTime);
-            _monsters.ForEach(x => x.Update(gameTime));
+            //_monsters.ForEach(x => x.Update(gameTime));
             base.Update(gameTime);
         }
 
@@ -96,7 +109,7 @@ namespace MyGame.GameScreens
 
             _player.Draw(gameTime);
 
-            _monsters.ForEach(x => x.Draw(gameTime));
+            //_monsters.ForEach(x => x.Draw(gameTime));
 
             base.Draw(gameTime);
 

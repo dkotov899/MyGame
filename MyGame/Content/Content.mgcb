@@ -14,6 +14,9 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin ../../../../../Desktop/World/Levels/LevelOne.tmx
+/copy:../../../../../Desktop/World/Levels/LevelOne.tmx;World/Levels/LevelOne.tmx
+
 #begin Background/BackgroundMenu.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -134,9 +137,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:SplashScreen/SplashScreen.png
-
-#begin World/Levels/LevelOne.tmx
-/copy:World/Levels/LevelOne.tmx
 
 #begin World/Tiles/Dungeon_Tileset.png
 /importer:TextureImporter
