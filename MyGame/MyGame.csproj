@@ -89,9 +89,11 @@
     <Compile Include="Controls\ControlManager.cs" />
     <Compile Include="Controls\Label.cs" />
     <Compile Include="Controls\LinkLabel.cs" />
-    <Compile Include="Controls\MenuButton.cs" />
     <Compile Include="Controls\PictureBox.cs" />
+    <Compile Include="GameScreens\GameOverScreen.cs" />
     <Compile Include="GameScreens\GamePlayScreen.cs" />
+    <Compile Include="GameScreens\GameRulesScreen.cs" />
+    <Compile Include="GameScreens\GameWinScreen.cs" />
     <Compile Include="GameScreens\SplashScreen.cs" />
     <Compile Include="GameScreens\StartMenuScreen.cs" />
     <Compile Include="GameStates\BaseGameState.cs" />
@@ -121,9 +123,7 @@
     <None Include="mgfxc.runtimeconfig.json" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Tools\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="CppNet.dll" />
     <Content Include="libmojoshader_64.dll" />

@@ -108,11 +108,11 @@
 /processorParam:TextureFormat=Color
 /build:Monsters/malewizard.png
 
-#begin Musics/MusicMain.mp3
+#begin Musics/Rainbow Lollipop.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
 /processorParam:Quality=Best
-/build:Musics/MusicMain.mp3
+/build:Musics/Rainbow Lollipop.mp3;Musics/RainbowLollipop.mp3
 
 #begin Player/malerogue.png
 /importer:TextureImporter

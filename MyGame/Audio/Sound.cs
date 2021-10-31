@@ -10,7 +10,7 @@ namespace MyGame.Audio
 
         public Song Music
         {
-            get => _music;
+            get { return _music; }
         }
 
         public Sound()
@@ -21,7 +21,7 @@ namespace MyGame.Audio
         public void LoadContent(ContentManager content)
         {
             _content = content;
-            _music = _content.Load<Song>("Musics/MusicMain");
+            _music = _content.Load<Song>("Musics/RainbowLollipop");
 
             MediaPlayer.Play(_music);
             MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
@@ -30,7 +30,6 @@ namespace MyGame.Audio
         private void MediaPlayer_MediaStateChanged(object sender, System.EventArgs e)
         {
             MediaPlayer.Volume -= 0.1f;
-            MediaPlayer.Play(_music);
         }
     }
 }

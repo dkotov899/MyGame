@@ -12,7 +12,7 @@
     <File>C:/Users/Administator/source/repos/MyGame/MyGame/Content/GUI/RightarrowUp.png</File>
     <File>C:/Users/Administator/source/repos/MyGame/MyGame/Content/Monsters/malefighter.png</File>
     <File>C:/Users/Administator/source/repos/MyGame/MyGame/Content/Monsters/malewizard.png</File>
-    <File>C:/Users/Administator/source/repos/MyGame/MyGame/Content/Musics/MusicMain.mp3</File>
+    <File>C:/Users/Administator/source/repos/MyGame/MyGame/Content/Musics/Rainbow Lollipop.mp3</File>
     <File>C:/Users/Administator/source/repos/MyGame/MyGame/Content/Player/malerogue.png</File>
     <File>C:/Users/Administator/source/repos/MyGame/MyGame/Content/SplashScreen/SplashScreen.png</File>
     <File>C:/Users/Administator/source/repos/MyGame/MyGame/Content/World/Tiles/Dungeon_Tileset.png</File>
@@ -26,7 +26,7 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
-    <File xsi:nil="true" />
+    <File>Musics/RainbowLollipop.mp3</File>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

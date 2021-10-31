@@ -27,24 +27,37 @@ namespace MyGame.Components.Players
         private MonsterAction[] _monsterActions;
         private MonsterAction _currentAction;
 
+        private Rectangle _monsterBounds;
+
         private int _indexCurrentAction;
 
-        private int _steps = 120;
+        private int _steps = 60;
         private int _currentStep = 0;
 
         private Vector2 _position;
         private Vector2 _positionOld;
 
-        private SpriteFont _spriteFont;
+        private Player _player;
 
-        public Monster(Game game, Vector2 position, MonsterType monsterType, MonsterAction[] monsterActions)
+        private bool _isCaugth;
+
+        public bool IsCaught
+        {
+            get { return _isCaugth; }
+            private set { _isCaugth = value; }
+        }
+
+        public Monster(Game game, Player player, Vector2 position, int steps, MonsterType monsterType, MonsterAction[] monsterActions)
         {
             _gameRef = (MainGame)game;
+            _player = player;
             _position = position;
+            _steps = steps;
             _monsterType = monsterType;
             _monsterActions = monsterActions;
             _currentAction = monsterActions[0];
             _indexCurrentAction = 0;
+            _monsterBounds = new Rectangle((int)_position.X, (int)_position.Y, 16, 16);
         }
 
         public void LoadContent()
@@ -75,7 +88,18 @@ namespace MyGame.Components.Players
                     { AnimationKey.Up, new Animation(3, 32, 32, 0, 96) }
                 });
 
-            _spriteFont = _gameRef.Content.Load<SpriteFont>("Fonts/ControlFont");
+
+            _sprite.Position = _position;
+        }
+
+        private void CheckPlayerCollision()
+        {
+            var playerRect = _player.PlayerBounds;
+
+            if (_monsterBounds.Intersects(playerRect) == true)
+            {
+                _isCaugth = true;
+            }
         }
 
         public void Update(GameTime gameTime)
@@ -141,13 +165,19 @@ namespace MyGame.Components.Players
                     break;
             }
 
+            CheckPlayerCollision();
+
             if (_position != _positionOld)
             {
                 _sprite.IsAnimating = true;
 
                 motion.Normalize();
 
-                _sprite.Position += motion * _sprite.Speed;
+                _sprite.Position += motion * (_sprite.Speed - 0.4f);
+
+
+                _monsterBounds.X = (int)_sprite.Position.X + 9;
+                _monsterBounds.Y = (int)_sprite.Position.Y + 16;
             }
             else
             {
@@ -158,9 +188,6 @@ namespace MyGame.Components.Players
         public void Draw(GameTime gameTime)
         {
             _sprite.Draw(gameTime, _gameRef.SpriteBatch);
-
-            _gameRef.SpriteBatch.DrawString(_spriteFont, $"W:{_sprite.Width}", new Vector2(1000, 600), Color.White);
-            _gameRef.SpriteBatch.DrawString(_spriteFont, $"H:{_sprite.Height}", new Vector2(1000, 630), Color.White);
         }
     }
 }

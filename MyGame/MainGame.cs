@@ -6,22 +6,18 @@ using MyGame.Input;
 using MyGame.GameStates;
 using MyGame.GameScreens;
 using MyGame.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace MyGame
 {
     public class MainGame : Game
     {
-        private float _fps;
-        private float _updateInterval = 1.0f;
-        private float _timeSinceLastUpdate = 0.0f;
-        private float _frameCount = 0;
-
         private SpriteBatch _spriteBatch;
         private GraphicsDeviceManager _graphics;
         private GameStateManager _gameStateManager;
 
-        public const int ScreenWidth = 1280;
-        public const int ScreenHeight = 720;
+        public const int ScreenWidth = 1240;
+        public const int ScreenHeight = 640;
 
         public readonly Rectangle ScreenRectangle =
             new Rectangle(0, 0, ScreenWidth, ScreenHeight);
@@ -33,6 +29,9 @@ namespace MyGame
         public SplashScreen SplashScreen { get; private set; }
         public StartMenuScreen StartMenuScreen { get; private set; }
         public GamePlayScreen GamePlayScreen { get; private set; }
+        public GameWinScreen GameWinScreen { get; private set; }
+        public GameOverScreen GameOverScreen { get; private set; }
+        public GameRulesCreen GameRulesScreen { get; private set; }
 
         //------------------
         // C O N S T R U C T
@@ -48,8 +47,10 @@ namespace MyGame
 
             _gameStateManager = new GameStateManager(this);
 
+            Window.Title = "GetGoGold";
             Window.IsBorderless = false;
             Window.Position = new Point(40, 10);
+            Window.AllowUserResizing = false;
             IsMouseVisible = true;
 
             Content.RootDirectory = "Content";
@@ -59,6 +60,9 @@ namespace MyGame
             SplashScreen = new SplashScreen(this, _gameStateManager);
             StartMenuScreen = new StartMenuScreen(this, _gameStateManager);
             GamePlayScreen = new GamePlayScreen(this, _gameStateManager);
+            GameWinScreen = new GameWinScreen(this, _gameStateManager);
+            GameOverScreen = new GameOverScreen(this, _gameStateManager);
+            GameRulesScreen = new GameRulesCreen(this, _gameStateManager);
 
             _gameStateManager.ChangeState(SplashScreen);
         }
@@ -77,7 +81,6 @@ namespace MyGame
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
             //Sound.LoadContent(Content);
         }
 
@@ -102,25 +105,9 @@ namespace MyGame
         //--------
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.White);
+            GraphicsDevice.Clear(Color.DimGray);
 
             base.Draw(gameTime);
-
-            float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            _frameCount++;
-            _timeSinceLastUpdate += elapsed;
-
-            if (_timeSinceLastUpdate > _updateInterval)
-            {
-                _fps = _frameCount / _timeSinceLastUpdate;
-
-                System.Diagnostics.Debug.WriteLine("FPS: " + _fps.ToString());
-                this.Window.Title = "FPS: " + _fps.ToString();
-
-                _frameCount = 0;
-                _timeSinceLastUpdate -= _updateInterval;
-            }
         }
     }
 }

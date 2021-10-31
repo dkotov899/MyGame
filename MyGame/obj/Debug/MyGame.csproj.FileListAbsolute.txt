@@ -41,11 +41,12 @@ C:\Users\Administator\source\repos\MyGame\MyGame\Content\GUI\ListBoxImage.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\GUI\RightarrowUp.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\Fonts\ControlFont.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\GUI\Rectangle-black.xnb
-C:\Users\Administator\source\repos\MyGame\MyGame\Content\Musics\MusicMain.wma
-C:\Users\Administator\source\repos\MyGame\MyGame\Content\Musics\MusicMain.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\Player\malerogue.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\Monsters\malefighter.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\Monsters\malewizard.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\World\Levels\LevelOne.tmx
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\World\Tiles\Dungeon_Tileset.tsx
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\World\Tiles\Dungeon_Tileset.xnb
+C:\Users\Administator\source\repos\MyGame\MyGame\Content\World\Tiles\IconSet.tsx
+C:\Users\Administator\source\repos\MyGame\MyGame\Content\Musics\RainbowLollipop.wma
+C:\Users\Administator\source\repos\MyGame\MyGame\Content\Musics\RainbowLollipop.xnb
