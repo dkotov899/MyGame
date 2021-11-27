@@ -100,14 +100,15 @@ namespace MyGame.GameComponents.World.GameLevel
 
                 var key = 1;
 
-                foreach (var file in Directory.GetFiles(@"Content\World\Levels\", "*.tmx", SearchOption.TopDirectoryOnly))
+                foreach (var file in Directory.GetFiles(@"Content/World/Levels/", "*.tmx", SearchOption.TopDirectoryOnly))
                 {
-                    var levelName = file.Split('/');
+                    var fileName = file.Split('/');
+                    var levelName = fileName[fileName.Length - 1].Split('.')[0];
 
                     listFiles.Add(new LevelData()
                     {
                         Key = key,
-                        LevelName = levelName[levelName.Length - 1],
+                        LevelName = levelName,
                         Status = key == 1 ? true : false
                     });
 
