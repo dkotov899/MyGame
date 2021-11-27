@@ -42,6 +42,9 @@
     <Reference Include="MonoGame.Framework, Version=3.8.0.1641, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MonoGame.Framework.WindowsDX.3.8.0.1641\lib\net452\MonoGame.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="SharpDX, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpDX.4.2.0\lib\net45\SharpDX.dll</HintPath>
@@ -80,22 +83,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Audio\Sound.cs" />
-    <Compile Include="Components\Monsters\Monster.cs" />
-    <Compile Include="Components\Players\Player.cs" />
-    <Compile Include="Components\Traps\TrapBase.cs" />
-    <Compile Include="Components\WorldMap\TileMapManager.cs" />
-    <Compile Include="Controls\Control.cs" />
-    <Compile Include="Controls\ControlManager.cs" />
-    <Compile Include="Controls\Label.cs" />
-    <Compile Include="Controls\LinkLabel.cs" />
-    <Compile Include="Controls\PictureBox.cs" />
-    <Compile Include="GameScreens\GameOverScreen.cs" />
-    <Compile Include="GameScreens\GamePlayScreen.cs" />
-    <Compile Include="GameScreens\GameRulesScreen.cs" />
-    <Compile Include="GameScreens\GameWinScreen.cs" />
-    <Compile Include="GameScreens\SplashScreen.cs" />
-    <Compile Include="GameScreens\StartMenuScreen.cs" />
+    <Compile Include="Audio\GameSound.cs" />
+    <Compile Include="GameComponents\Monsters\Monster.cs" />
+    <Compile Include="GameComponents\Players\Player.cs" />
+    <Compile Include="GameComponents\Tools\Camera.cs" />
+    <Compile Include="GameComponents\World\GameLevel\DataLevelManager.cs" />
+    <Compile Include="GameComponents\World\GameLevel\Level.cs" />
+    <Compile Include="GameComponents\World\GameLevel\LevelData.cs" />
+    <Compile Include="GameComponents\World\GameLevel\GameLevelManager.cs" />
+    <Compile Include="GameComponents\World\TileMapManager.cs" />
+    <Compile Include="GUI\GameControls\Control.cs" />
+    <Compile Include="GUI\GameControls\ControlManager.cs" />
+    <Compile Include="GUI\GameControls\Label.cs" />
+    <Compile Include="GUI\GameControls\LinkLabel.cs" />
+    <Compile Include="GUI\GameControls\PictureBox.cs" />
+    <Compile Include="GUI\GameScreens\GameLevelSelection.cs" />
+    <Compile Include="GUI\GameScreens\GameOverScreen.cs" />
+    <Compile Include="GUI\GameScreens\GamePlayScreen.cs" />
+    <Compile Include="GUI\GameScreens\GameRulesScreen.cs" />
+    <Compile Include="GUI\GameScreens\GameWinScreen.cs" />
+    <Compile Include="GUI\GameScreens\GameSplashScreen.cs" />
+    <Compile Include="GUI\GameScreens\GameStartMenuScreen.cs" />
     <Compile Include="GameStates\BaseGameState.cs" />
     <Compile Include="GameStates\GameState.cs" />
     <Compile Include="GameStates\GameStateManager.cs" />
@@ -103,16 +111,16 @@
     <Compile Include="MainGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sprites\AnimatedSprite.cs" />
-    <Compile Include="Sprites\Animation.cs" />
-    <Compile Include="TiledSharp\src\Group.cs" />
-    <Compile Include="TiledSharp\src\ImageLayer.cs" />
-    <Compile Include="TiledSharp\src\ITmxLayer.cs" />
-    <Compile Include="TiledSharp\src\Layer.cs" />
-    <Compile Include="TiledSharp\src\Map.cs" />
-    <Compile Include="TiledSharp\src\ObjectGroup.cs" />
-    <Compile Include="TiledSharp\src\TiledCore.cs" />
-    <Compile Include="TiledSharp\src\Tileset.cs" />
+    <Compile Include="GameComponents\Sprites\AnimatedSprite.cs" />
+    <Compile Include="GameComponents\Sprites\Animation.cs" />
+    <Compile Include="GameComponents\World\TiledSharp\src\Group.cs" />
+    <Compile Include="GameComponents\World\TiledSharp\src\ImageLayer.cs" />
+    <Compile Include="GameComponents\World\TiledSharp\src\ITmxLayer.cs" />
+    <Compile Include="GameComponents\World\TiledSharp\src\Layer.cs" />
+    <Compile Include="GameComponents\World\TiledSharp\src\Map.cs" />
+    <Compile Include="GameComponents\World\TiledSharp\src\ObjectGroup.cs" />
+    <Compile Include="GameComponents\World\TiledSharp\src\TiledCore.cs" />
+    <Compile Include="GameComponents\World\TiledSharp\src\Tileset.cs" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
@@ -123,7 +131,9 @@
     <None Include="mgfxc.runtimeconfig.json" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="CppNet.dll" />
     <Content Include="libmojoshader_64.dll" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using Microsoft.Xna.Framework;
 
 namespace MyGame.GameStates
@@ -8,8 +9,7 @@ namespace MyGame.GameStates
     {
         private GameState _tag;
         private List<GameComponent> _childComponents;
-
-        protected GameStateManager StateManager;
+        protected readonly static Queue<string> _descriptions = new Queue<string>();
 
         public List<GameComponent> Components
         {
@@ -21,12 +21,14 @@ namespace MyGame.GameStates
             get { return _tag; }
         }
 
+        protected GameStateManager StateManager;
+
         public GameState(Game game, GameStateManager manager)
         : base(game)
         {
             StateManager = manager;
-            _childComponents = new List<GameComponent>();
             _tag = this;
+            _childComponents = new List<GameComponent>();
         }
 
         public override void Initialize()
