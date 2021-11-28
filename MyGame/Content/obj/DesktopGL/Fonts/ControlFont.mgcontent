@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/Administator/source/repos/MyGame/MyGame/Content/Fonts/ControlFont.spritefont</SourceFile>
-  <SourceTime>2021-10-16T17:52:13.2662942+03:00</SourceTime>
+  <SourceTime>2021-11-14T09:21:17.6071376+03:00</SourceTime>
   <DestFile>C:/Users/Administator/source/repos/MyGame/MyGame/Content/bin/DesktopGL/Fonts/ControlFont.xnb</DestFile>
-  <DestTime>2021-10-16T18:58:25.7725789+03:00</DestTime>
+  <DestTime>2021-11-28T13:19:33.8892069+03:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2020-08-10T19:17:54+03:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

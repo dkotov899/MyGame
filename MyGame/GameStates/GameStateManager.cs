@@ -5,24 +5,27 @@ using Microsoft.Xna.Framework;
 
 namespace MyGame.GameStates
 {
+    public enum ChangeType { Change, Pop, Push }
+
     public class GameStateManager : GameComponent
     {
-        public event EventHandler OnStateChange;
+        private int _drawOrder;
+        private Stack<GameState> _gameStates = new Stack<GameState>();
 
-        Stack<GameState> gameStates = new Stack<GameState>();
         const int startDrawOrder = 5000;
         const int drawOrderInc = 100;
-        int drawOrder;
+
+        public event EventHandler OnStateChange;
 
         public GameState CurrentState
         {
-            get { return gameStates.Peek(); }
+            get { return _gameStates.Peek(); }
         }
 
         public GameStateManager(Game game)
         : base(game)
         {
-            drawOrder = startDrawOrder;
+            _drawOrder = startDrawOrder;
         }
 
         public override void Initialize()
@@ -37,51 +40,61 @@ namespace MyGame.GameStates
 
         public void PopState()
         {
-            if (gameStates.Count > 0)
+            if (_gameStates.Count > 0)
             {
                 RemoveState();
-                drawOrder -= drawOrderInc;
+
+                _drawOrder -= drawOrderInc;
+
                 if (OnStateChange != null)
+                {
                     OnStateChange(this, null);
+                }
             }
         }
 
         private void RemoveState()
         {
-            GameState State = gameStates.Peek();
+            GameState State = _gameStates.Peek();
             OnStateChange -= State.StateChange;
             Game.Components.Remove(State);
-            gameStates.Pop();
+            _gameStates.Pop();
         }
 
         public void PushState(GameState newState)
         {
-            drawOrder += drawOrderInc;
-            newState.DrawOrder = drawOrder;
+            _drawOrder += drawOrderInc;
+            newState.DrawOrder = _drawOrder;
             AddState(newState);
 
             if (OnStateChange != null)
+            {
                 OnStateChange(this, null);
+            }
         }
 
         private void AddState(GameState newState)
         {
-            gameStates.Push(newState);
+            _gameStates.Push(newState);
             Game.Components.Add(newState);
             OnStateChange += newState.StateChange;
         }
 
         public void ChangeState(GameState newState)
         {
-            while (gameStates.Count > 0)
+            while (_gameStates.Count > 0)
+            {
                 RemoveState();
+            }
 
             newState.DrawOrder = startDrawOrder;
-            drawOrder = startDrawOrder;
+            _drawOrder = startDrawOrder;
             AddState(newState);
 
             if (OnStateChange != null)
+            {
                 OnStateChange(this, null);
+            }
         }
     }
 }

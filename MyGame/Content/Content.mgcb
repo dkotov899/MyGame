@@ -14,9 +14,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin ../../../../../Desktop/World/Levels/LevelOne.tmx
-/copy:../../../../../Desktop/World/Levels/LevelOne.tmx;World/Levels/LevelOne.tmx
-
 #begin Background/BackgroundMenu.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -60,7 +57,7 @@
 /processorParam:TextureFormat=Color
 /build:GUI/ListBoxImage.png
 
-#begin GUI/Rectangle-black.png
+#begin GUI/LockImage.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -70,7 +67,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:GUI/Rectangle-black.png
+/build:GUI/LockImage.png
 
 #begin GUI/RightarrowUp.png
 /importer:TextureImporter
@@ -96,24 +93,6 @@
 /processorParam:TextureFormat=Color
 /build:Monsters/malefighter.png
 
-#begin Monsters/malewizard.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Monsters/malewizard.png
-
-#begin Musics/Rainbow Lollipop.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Musics/Rainbow Lollipop.mp3;Musics/RainbowLollipop.mp3
-
 #begin Player/malerogue.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -126,7 +105,7 @@
 /processorParam:TextureFormat=Color
 /build:Player/malerogue.png
 
-#begin SplashScreen/SplashScreen.png
+#begin Scenes/GameOverScreen.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -136,7 +115,43 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:SplashScreen/SplashScreen.png
+/build:Scenes/GameOverScreen.png
+
+#begin Scenes/GameSplashScreen.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Scenes/GameSplashScreen.jpg
+
+#begin Scenes/GameWinScreen.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Scenes/GameWinScreen.png
+
+#begin Sound/Musics/MusicMain.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sound/Musics/MusicMain.mp3
+
+#begin World/Levels/Level-1.tmx
+/copy:World/Levels/Level-1.tmx
+
+#begin World/Levels/Level-2.tmx
+/copy:World/Levels/Level-2.tmx
 
 #begin World/Tiles/Dungeon_Tileset.png
 /importer:TextureImporter
