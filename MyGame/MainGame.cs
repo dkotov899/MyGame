@@ -75,7 +75,6 @@ namespace MyGame
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             GameSound.Load(Content);
-            GameSound.PlayMusic();
 
             DataLevelManager.ReadLevelData();
         }

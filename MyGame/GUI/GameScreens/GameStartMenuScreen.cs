@@ -38,6 +38,8 @@ namespace MyGame.GameScreens
 
             var content = Game.Content;
 
+            GameSound.PlayMusic();
+
             _backgroundImage = new PictureBox(
                 content.Load<Texture2D>("Background/BackgroundMenu"),
                 _gameRef.ScreenRectangle);
@@ -58,7 +60,7 @@ namespace MyGame.GameScreens
             _startGame.Selected += new EventHandler(menuItem_Selected);
 
             _rulesGame = new LinkLabel();
-            _rulesGame.Text = "True";
+            _rulesGame.Text = "Rules";
             _rulesGame.Size = _startGame.SpriteFont.MeasureString(_startGame.Text);
             _rulesGame.Selected += new EventHandler(menuItem_Selected);
 

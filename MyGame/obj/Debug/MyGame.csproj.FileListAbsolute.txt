@@ -12,7 +12,6 @@ C:\Users\Administator\source\repos\MyGame\MyGame\Content\Player\malerogue.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\Scenes\GameOverScreen.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\Scenes\GameSplashScreen.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\Scenes\GameWinScreen.xnb
-C:\Users\Administator\source\repos\MyGame\MyGame\Content\Sound\Musics\MusicMain.wma
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\Sound\Musics\MusicMain.xnb
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\World\Levels\Level-1.tmx
 C:\Users\Administator\source\repos\MyGame\MyGame\Content\World\Levels\Level-2.tmx
@@ -44,3 +43,4 @@ C:\Users\Administator\source\repos\MyGame\MyGame\SharpDX.Mathematics.xml
 C:\Users\Administator\source\repos\MyGame\MyGame\SharpDX.MediaFoundation.xml
 C:\Users\Administator\source\repos\MyGame\MyGame\SharpDX.XAudio2.xml
 C:\Users\Administator\source\repos\MyGame\MyGame\SharpDX.XInput.xml
+C:\Users\Administator\source\repos\MyGame\MyGame\Content\Sound\Musics\MusicMain.wma

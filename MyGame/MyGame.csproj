@@ -38,6 +38,9 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Audio\GameSound.cs" />
     <Compile Include="GameComponents\Monsters\Monster.cs" />
@@ -92,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CppNet.dll" />
+    <Content Include="Icon.ico" />
     <Content Include="libmojoshader_64.dll" />
     <Content Include="mgfxc.dll" />
     <Content Include="mgfxc.exe" />

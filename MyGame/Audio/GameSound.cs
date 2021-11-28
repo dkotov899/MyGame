@@ -1,12 +1,10 @@
 ﻿using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Content;
-using System;
 
 namespace MyGame.Audio
 {
-    public enum SoundEffectType
+    public enum AudioEffectType
     {
-
     }
 
     public static class GameSound
@@ -31,8 +29,8 @@ namespace MyGame.Audio
         {
             if (_music != null)
             {
-                MediaPlayer.Play(_music);
                 MediaPlayer.IsRepeating = true;
+                MediaPlayer.Play(_music);
             }
         }
 
@@ -41,14 +39,8 @@ namespace MyGame.Audio
             MediaPlayer.Stop();
         }
 
-        public static void PlayEffect(SoundEffectType type)
+        public static void PlayEffect(AudioEffectType type)
         {
-            switch (type)
-            {
-                default:
-
-                    break;
-            }
         }
     }
 }
