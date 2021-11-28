@@ -70,7 +70,7 @@ namespace MyGame.GameScreens
             _exitGame.Selected += menuItem_Selected;
 
             _copyrightGame = new Label();
-            _copyrightGame.Text = "@Copyright, Evgenia Vlasova, 2021.";
+            _copyrightGame.Text = "@Copyright, Dkotov899, 2021.";
             _copyrightGame.Size = _exitGame.SpriteFont.MeasureString(_copyrightGame.Text);
 
             _controlManager.AddRange(new List<Control>
