@@ -19,7 +19,7 @@ namespace MyGame.Audio
 
         public static void Load(ContentManager content)
         {
-           _music = content.Load<Song>("Sound/Songs/Invitation");
+           _music = content.Load<Song>("Sound/Musics/MusicMain");
         }
 
         public static void SetVolume(float value)
@@ -45,7 +45,9 @@ namespace MyGame.Audio
         {
             switch (type)
             {
- 
+                default:
+
+                    break;
             }
         }
     }

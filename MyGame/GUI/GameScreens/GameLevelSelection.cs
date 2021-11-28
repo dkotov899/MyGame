@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,7 +19,11 @@ namespace MyGame.GUI.GameScreens
         private PictureBox _backgroundImage;
         private PictureBox _arrowImage;
 
-        private List<LinkLabel> _levels;
+        private Dictionary<int, LinkLabel> _linkLabels;
+        private Dictionary<int, PictureBox> _lockImages;
+
+        private Texture2D _arrowTexture;
+        private Texture2D _lockTexture;
 
         private float _maxItemWidth = 0f;
 
@@ -40,9 +44,6 @@ namespace MyGame.GUI.GameScreens
             var content = Game.Content;
 
             GameLevelManager.GameRef = _gameRef;
-            GameLevelManager.CreateLevels();
-
-            _levels = new List<LinkLabel>();
 
             _backgroundImage = new PictureBox(
                 content.Load<Texture2D>("Background/BackgroundMenu"),
@@ -50,58 +51,15 @@ namespace MyGame.GUI.GameScreens
 
             _controlManager.Add(_backgroundImage);
 
-            var arrowTexture = content.Load<Texture2D>("GUI/LeftarrowUp");
+            _arrowTexture = content.Load<Texture2D>("GUI/LeftarrowUp");
+            _lockTexture = content.Load<Texture2D>("GUI/LockImage");
 
-            _arrowImage = new PictureBox(
-                arrowTexture,
-                new Rectangle(
-                    0,
-                    0,
-                    arrowTexture.Width,
-                    arrowTexture.Height));
-
-            _controlManager.Add(_arrowImage);
-
-            foreach (var item in DataLevelManager.LevelsData)
-            {
-                var linkLabel = new LinkLabel();
-
-                linkLabel.Text = item.Value.LevelName;
-                linkLabel.Size = linkLabel.SpriteFont.MeasureString(linkLabel.Text);
-                linkLabel.Selected += new EventHandler(menuItem_Selected);
-
-                _levels.Add(linkLabel);
-            }
-
-            _controlManager.AddRange(_levels);
+            CreateLevelMenu();
 
             _controlManager.NextControl();
-            _controlManager.FocusChanged += new EventHandler(ControlManager_FocusChanged);
+            _controlManager.FocusChanged += new EventHandler(ControlManager_FocusChanged);        
 
-            var position = new Vector2
-                (
-                    _gameRef.ScreenRectangle.Width / 2,
-                    _gameRef.ScreenRectangle.Height / 2
-                );
-
-            foreach (var control in _controlManager)
-            {
-                if (control is LinkLabel)
-                {
-                    if (control.Size.X > _maxItemWidth)
-                    {
-                        _maxItemWidth = control.Size.X;
-                    }
-
-                    position.Y += control.Size.Y + 5f;
-
-                    control.Position = new Vector2(
-                        position.X - (control.Size.X / 2),
-                        position.Y - 250);
-                }
-            }
-
-            ControlManager_FocusChanged(_levels.First(), null);
+            ControlManager_FocusChanged(_linkLabels.First().Value, null);
         }
 
         protected override void UnloadContent()
@@ -118,6 +76,8 @@ namespace MyGame.GUI.GameScreens
 
             _controlManager.Update(gameTime, PlayerIndex.One);
 
+            RefreshLevelMenu();
+
             base.Update(gameTime);
         }
 
@@ -130,6 +90,86 @@ namespace MyGame.GUI.GameScreens
             base.Draw(gameTime);
 
             _gameRef.SpriteBatch.End();
+        }
+
+        private void CreateLevelMenu()
+        {
+            GameLevelManager.CreateLevels();
+
+            _linkLabels = new Dictionary<int, LinkLabel>();
+            _lockImages = new Dictionary<int, PictureBox>();
+
+            _arrowImage = new PictureBox
+                (
+                    _arrowTexture,
+                    new Rectangle(
+                        0,
+                        0,
+                        _arrowTexture.Width,
+                        _arrowTexture.Height)
+                );            
+
+            var position = new Vector2
+                (
+                    _gameRef.ScreenRectangle.Width / 2,
+                    _gameRef.ScreenRectangle.Height / 2 - 200
+                );
+
+            foreach (var item in DataLevelManager.LevelsData)
+            {
+                var linkLabel = new LinkLabel();
+
+                linkLabel.Text = item.Value.LevelName;
+                linkLabel.Size = linkLabel.SpriteFont.MeasureString(linkLabel.Text);
+                linkLabel.Selected += new EventHandler(menuItem_Selected);
+
+                if (linkLabel.Size.X > _maxItemWidth)
+                {
+                    _maxItemWidth = linkLabel.Size.X;
+                }
+
+                position.Y += linkLabel.Size.Y + 5f;
+
+                linkLabel.Position = new Vector2(
+                        position.X - (linkLabel.Size.X / 2),
+                        position.Y);
+
+                if (item.Key - 1 != 0)
+                {
+                    if (GameLevelManager.GameLevels[item.Key - 1].LevelData.Status == false)
+                    {
+                        linkLabel.Enabled = false;
+
+                        var lockImage = new PictureBox
+                            (
+                                _lockTexture,
+                                new Rectangle
+                                (
+                                    0,
+                                    0,
+                                    _lockTexture.Width,
+                                    _lockTexture.Height
+                                )
+                            );
+
+                        lockImage.SetPosition
+                            (   new Vector2
+                                (
+                                    linkLabel.Position.X + _maxItemWidth + 10f,
+                                    linkLabel.Position.Y
+                                )
+                            );
+
+                        _lockImages.Add(item.Key, lockImage);
+                    }
+                }
+
+                _linkLabels.Add(item.Key, linkLabel);
+            }
+
+            _controlManager.Add(_arrowImage);
+            _controlManager.AddRange(_linkLabels.Values);
+            _controlManager.AddRange(_lockImages.Values);
         }
 
         private void ControlManager_FocusChanged(object sender, EventArgs e)
@@ -145,11 +185,43 @@ namespace MyGame.GUI.GameScreens
         {
             var selectedLabel = (LinkLabel)sender;
 
-            GameLevelManager.CurrentLevel = GameLevelManager.GameLevels.First(n => n.Value.LevelData.LevelName == selectedLabel.Text).Value;
+            var level = GameLevelManager.GameLevels.First(n => n.Value.LevelData.LevelName == selectedLabel.Text).Value;
 
-            var test = GameLevelManager.GameLevels.First(n => n.Value.LevelData.LevelName == selectedLabel.Text).Value;
+            if (level.LevelData.Key == 1 ||
+                GameLevelManager.GameLevels[level.LevelData.Key - 1].LevelData.Status == true)
+            {
+                GameLevelManager.LoadLevel(level.LevelData.Key);
 
-            Transition(ChangeType.Change, _gameRef.GamePlayScreen);
+                Transition(ChangeType.Change, _gameRef.GamePlayScreen);
+            }
+        }
+
+        private void RefreshLevelMenu()
+        {
+            if (_linkLabels == null)
+            {
+                return;
+            }
+
+            foreach (var level in GameLevelManager.GameLevels)
+            {
+                if (level.Key - 1 != 0)
+                {
+                    if (GameLevelManager.GameLevels[level.Key - 1].LevelData.Status == true)
+                    {
+                        if (_linkLabels[level.Key].Enabled == false)
+                        {
+                            _linkLabels[level.Key].Enabled = true;
+                         
+                            if (_lockImages.ContainsKey(level.Key))
+                            {
+                                _controlManager.Remove(_lockImages[level.Key]);
+                                _lockImages.Remove(level.Key);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

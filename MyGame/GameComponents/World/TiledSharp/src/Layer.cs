@@ -107,7 +107,7 @@ namespace TiledSharp
         const uint FLIPPED_VERTICALLY_FLAG   = 0x40000000;
         const uint FLIPPED_DIAGONALLY_FLAG   = 0x20000000;
 
-        public int Gid {get; private set;}
+        public int Gid {get; set;}
         public int X {get; private set;}
         public int Y {get; private set;}
         public bool HorizontalFlip {get; private set;}

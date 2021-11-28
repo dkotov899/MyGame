@@ -70,7 +70,6 @@ namespace MyGame.GameScreens
             _copyrightGame = new Label();
             _copyrightGame.Text = "@Copyright, Evgenia Vlasova, 2021.";
             _copyrightGame.Size = _exitGame.SpriteFont.MeasureString(_copyrightGame.Text);
-            _copyrightGame.Selected += menuItem_Selected;
 
             _controlManager.AddRange(new List<Control>
             {
@@ -102,7 +101,7 @@ namespace MyGame.GameScreens
 
                     control.Position = new Vector2(
                         position.X - (control.Size.X / 2),
-                        position.Y);
+                        position.Y - 50);
                 }
 
                 if (control is Label)

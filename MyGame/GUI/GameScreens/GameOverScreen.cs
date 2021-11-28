@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework.Graphics;
 
 using MyGame.GameStates;
 using MyGame.Controls;
-using MyGame.GameComponents.World;
 
 namespace MyGame.GameScreens
 {
@@ -28,13 +27,12 @@ namespace MyGame.GameScreens
         protected override void LoadContent()
         {
             base.LoadContent();
+
             var content = _gameRef.Content;
 
-            _backgroundImage = new PictureBox
-            (
-                content.Load<Texture2D>("Background/GameOverScreenImage"),
-                _gameRef.ScreenRectangle
-            );
+            _backgroundImage = new PictureBox(
+                content.Load<Texture2D>("Scenes/GameOverScreen"),
+                _gameRef.ScreenRectangle);
 
             var arrowTexture = content.Load<Texture2D>("GUI/LeftarrowUp");
 
@@ -52,7 +50,7 @@ namespace MyGame.GameScreens
             _tryAgain.Selected += new EventHandler(menuItem_Selected);
 
             _exit = new LinkLabel();
-            _exit.Text = "Exit to main menu";
+            _exit.Text = "Escape";
             _exit.Size = _exit.SpriteFont.MeasureString(_exit.Text);
             _exit.Selected += menuItem_Selected;
 
@@ -102,9 +100,9 @@ namespace MyGame.GameScreens
         {
             _gameRef.SpriteBatch.Begin();
 
-            _controlManager.Draw(_gameRef.SpriteBatch);
-
             base.Draw(gameTime);
+
+            _controlManager.Draw(_gameRef.SpriteBatch);
 
             _gameRef.SpriteBatch.End();
         }

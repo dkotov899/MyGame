@@ -18,13 +18,10 @@ namespace MyGame.Components.WorldMap
         private int _tileWidth;
         private int _tileHeight;
 
-        Player player;
-
-        public TileMapManager(SpriteBatch spriteBatch, TmxMap map, Player player, Texture2D tileset, int tilesetTilesWide, int tileWidth, int tileHeight)
+        public TileMapManager(SpriteBatch spriteBatch, TmxMap map, Texture2D tileset, int tilesetTilesWide, int tileWidth, int tileHeight)
         {
             _spriteBatch = spriteBatch;
             _map = map;
-            this.player = player; 
             _tileset = tileset;
             _tilesetTilesWide = tilesetTilesWide;
             _tileWidth = tileWidth;
@@ -33,8 +30,6 @@ namespace MyGame.Components.WorldMap
 
         public void Draw()
         {
-
-
             for (var i = 0; i < _map.TileLayers.Count; i++)
             {
                 for (var j = 0; j < _map.TileLayers[i].Tiles.Count; j++)
@@ -54,13 +49,31 @@ namespace MyGame.Components.WorldMap
                         _spriteBatch.Draw(
                             _tileset,
                             new Rectangle((int)x, (int)y, tilesetRec.Width, tilesetRec.Height),
-                            tilesetRec, 
+                            tilesetRec,
                             Color.White);
                     }
                 }
             }
+        }
 
-     
+        public void ResetGidTile(Rectangle keyRectangle)
+        {
+            for (var j = 0; j < _map.TileLayers[6].Tiles.Count; j++)
+            {
+                int gid = _map.TileLayers[6].Tiles[j].Gid;
+
+                if (gid != 0)
+                {
+                    if (keyRectangle.Intersects(
+                            new Rectangle(
+                                ((j % _map.Width) * _map.TileWidth),
+                                ((int)Math.Floor(j / (double)_map.Width) * _map.TileHeight),
+                                 _map.TileWidth, _map.TileHeight)) == true)
+                    {
+                        _map.TileLayers[6].Tiles[j].Gid = 0;
+                    }
+                }
+            }
         }
     }
 }

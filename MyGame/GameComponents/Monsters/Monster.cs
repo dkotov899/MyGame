@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MyGame.Sprites;
 using System.Collections.Generic;
+using MyGame.GameComponents.World;
 
 namespace MyGame.Components.Players
 {
@@ -16,6 +17,11 @@ namespace MyGame.Components.Players
 
     public class Monster
     {
+        private Game _gameRef;
+        private Level _level;
+
+        private int _key;
+
         private AnimatedSprite _sprite;
 
         private Vector2 _position;
@@ -27,15 +33,11 @@ namespace MyGame.Components.Players
         private MonsterAction[] _monsterActions;
         private MonsterAction _currentAction;
 
-        private Game _gameRef;
-        private Player _player;
-
-        public Monster(Game game, Player player, Vector2 startPosition, Rectangle route)
+        public Monster(Game game, Level level, int key)
         {
             _gameRef = game;
-            _player = player;
-            _position = startPosition;
-            _route = route;
+            _level = level;
+            _key = key;
         }
 
         public void LoadContent()
@@ -50,7 +52,17 @@ namespace MyGame.Components.Players
                     { AnimationKey.Up, new Animation(3, 32, 32, 0, 96) }
                 });
 
+            _position = new Vector2(_level.MonstersStartPoint[_key].X, _level.MonstersStartPoint[_key].Y);
+
             _sprite.Position = _position;
+
+            _monsterBounds = new Rectangle
+                (
+                    (int)_position.X + 8, (int)_position.Y + 16,
+                    16, 16
+                );
+
+            _route = _level.MonstersRoutes[_key];
 
             _monsterActions = new MonsterAction[]
             {
@@ -59,12 +71,6 @@ namespace MyGame.Components.Players
             };
 
             _currentAction = _monsterActions[0];
-
-            _monsterBounds = new Rectangle
-                (
-                    (int)_position.X + 8, (int)_position.Y + 16,
-                    16, 16
-                );
         }
 
         public void Update(GameTime gameTime)
@@ -183,9 +189,9 @@ namespace MyGame.Components.Players
 
         private void PlayerCollisions()
         {
-            if (_monsterBounds.Intersects(_player.PlayerBounds) == true)
+            if (_monsterBounds.Intersects(_level.Player.PlayerBounds) == true)
             {
-                _player.IsAlive = false;
+                _level.Player.IsAlive = false;
             }
         }
 

@@ -29,7 +29,7 @@ namespace MyGame.GameScreens
             var content = Game.Content;
 
             _backgroundImage = new PictureBox(
-                content.Load<Texture2D>("SplashScreen/SplashScreen"),
+                content.Load<Texture2D>("Scenes/GameSplashScreen"),
                 _gameRef.ScreenRectangle);
 
             _controlManager.Add(_backgroundImage);

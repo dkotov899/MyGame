@@ -65,7 +65,7 @@ namespace MyGame.GameComponents.Tools
         public Camera(Rectangle viewportRect)
         {
             _speed = 4f;
-            _zoom = 1.5f;
+            _zoom = 2.0f;
             _viewportRectangle = viewportRect;
             _mode = CameraMode.Follow;
         }

@@ -4,6 +4,7 @@ using MyGame.GameStates;
 using MyGame.GameComponents.World;
 using MyGame.Input;
 using Microsoft.Xna.Framework.Input;
+using MyGame.GameComponents.World.GameLevel;
 
 namespace MyGame.GameScreens
 {
@@ -22,8 +23,6 @@ namespace MyGame.GameScreens
         protected override void LoadContent()
         {
             base.LoadContent();
-
-            GameLevelManager.CurrentLevel.LoadContent();
         }
 
         public override void Update(GameTime gameTime)
@@ -41,8 +40,12 @@ namespace MyGame.GameScreens
 
             if (GameLevelManager.CurrentLevel.LevelState == LevelState.GameWin)
             {
-                Transition(ChangeType.Change, _gameRef.GameOverScreen);
+                Transition(ChangeType.Change, _gameRef.GameWinScreen);
+
                 GameLevelManager.ResetLevel();
+                GameLevelManager.CurrentLevel.LevelData.Status = true;
+
+                DataLevelManager.WriteLevelData();
             }
 
             if (InputHandler.KeyReleased(Keys.Escape))

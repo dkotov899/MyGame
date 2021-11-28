@@ -17,7 +17,7 @@ namespace MyGame
         private GameStateManager _gameStateManager;
 
         public const int ScreenWidth = 1280;
-        public const int ScreenHeight = 768;
+        public const int ScreenHeight = 720;
 
         public readonly Rectangle ScreenRectangle =
             new Rectangle(0, 0, ScreenWidth, ScreenHeight);
@@ -74,7 +74,8 @@ namespace MyGame
             base.LoadContent();
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            //GameSound.Load(Content);
+            GameSound.Load(Content);
+            GameSound.PlayMusic();
 
             DataLevelManager.ReadLevelData();
         }

@@ -1,18 +1,23 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MyGame.GameComponents.Tools;
 
 using MyGame.Input;
 using MyGame.Sprites;
-using System.Collections.Generic;
+using MyGame.GameComponents.Tools;
+using MyGame.GameComponents.World;
+
 
 namespace MyGame.Components.Players
 {
     public class Player
     {
-        private Camera _camera;
         private MainGame _gameRef;
+        private Level _level;
+
+        private Camera _camera;
         private AnimatedSprite _sprite;
 
         private Vector2 _position;
@@ -21,8 +26,12 @@ namespace MyGame.Components.Players
         private Rectangle _playerBounds;
 
         private List<Rectangle> _collisionObjects;
+        private Dictionary<int, Rectangle> _collisionKeys;
+        private Dictionary<int, Rectangle> _collectedKeys;
 
         private bool _isAlive = true;
+
+        private bool _isKeysCollectedSuccess = false;
 
         public Camera Camera
         {
@@ -44,17 +53,26 @@ namespace MyGame.Components.Players
             get { return _playerBounds; }
         }
 
+        public Dictionary<int, Rectangle> CollectedKeys
+        {
+            get { return _collectedKeys; }
+        }
+
         public bool IsAlive
         {
             get { return _isAlive; }
             set { _isAlive = value; }
         }
 
-        public Player(Game game, Vector2 startPosition, List<Rectangle> collisionObjects)
+        public bool IsKeysCollectedSuccess
+        {
+            get { return _isKeysCollectedSuccess; }
+        }
+
+        public Player(Game game, Level level)
         {
             _gameRef = (MainGame)game;
-            _position = startPosition;
-            _collisionObjects = collisionObjects;
+            _level = level;
         }
 
         public void LoadContent()
@@ -71,9 +89,17 @@ namespace MyGame.Components.Players
                     { AnimationKey.Up, new Animation(3, 32, 32, 0, 96) }
                 });
 
+            _position = new Vector2(_level.PlayerStartPoint.Location.X, _level.PlayerStartPoint.Location.Y);
+
             _sprite.Position = _position;
 
             _playerBounds = new Rectangle((int)_position.X + 8, (int)_position.Y + 16, 16, 16);
+
+            _collisionObjects = _level.Collisions;
+
+            _collisionKeys = _level.Keys;
+
+            _collectedKeys = new Dictionary<int, Rectangle>();
         }
 
         public void Update(GameTime gameTime)
@@ -143,6 +169,9 @@ namespace MyGame.Components.Players
                 }
             }
 
+            KeyCollisions();
+            EndPointCollision();
+
             if (_position != _positionOld)
             {
                 _sprite.IsAnimating = true;
@@ -202,6 +231,29 @@ namespace MyGame.Components.Players
             }
 
             return true;
+        }
+
+        private void KeyCollisions()
+        {
+            foreach (var key in _collisionKeys)
+            {
+                if (key.Value.Intersects(_playerBounds) == true)
+                {
+                    if (_collectedKeys.ContainsKey(key.Key) == false)
+                    {
+                        _collectedKeys.Add(key.Key, key.Value);
+                    }
+                }
+            }
+        }
+
+        private void EndPointCollision()
+        {
+            if (_playerBounds.Intersects(_level.PlayerEndPoin) == true &&
+                _collectedKeys.Count == 3)
+            {
+                _isKeysCollectedSuccess = true;
+            }
         }
     }
 }

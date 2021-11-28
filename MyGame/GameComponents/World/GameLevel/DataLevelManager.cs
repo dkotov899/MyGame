@@ -55,7 +55,7 @@ namespace MyGame.GameComponents.World.GameLevel
         {
             try
             {
-                using (var stream = new FileStream(@"Data\LevelsData.txt", FileMode.OpenOrCreate))
+                using (var stream = new FileStream(@"Data\LevelsData.txt", FileMode.Create))
                 {
                     var root = GetLevelData();
 
@@ -70,7 +70,7 @@ namespace MyGame.GameComponents.World.GameLevel
             }
         }
 
-        private static void SetLevelData(Root root) //write data
+        private static void SetLevelData(Root root) //read data
         {
             var levels = root.PayLoad.LevelData;
 
@@ -80,16 +80,27 @@ namespace MyGame.GameComponents.World.GameLevel
             }
         }
 
-        private static Root GetLevelData() //read data
+        private static Root GetLevelData() //write data
         {
             var levels = new List<LevelData>();
 
             foreach (var item in _levelsData)
             {
-                levels.Add(item.Value);
+                levels.Add(new LevelData()
+                {
+                    Key = item.Key,
+                    LevelName = item.Value.LevelName,
+                    Status = item.Value.Status
+                });
             }
 
-            return new Root() { PayLoad = new PayLoad() { LevelData = levels } };
+            return new Root()
+            {
+                PayLoad = new PayLoad() 
+                { 
+                    LevelData = levels
+                } 
+            };
         }
 
         private static void CreateDataFile()
@@ -109,7 +120,7 @@ namespace MyGame.GameComponents.World.GameLevel
                     {
                         Key = key,
                         LevelName = levelName,
-                        Status = key == 1 ? true : false
+                        Status = false
                     });
 
                     key++;

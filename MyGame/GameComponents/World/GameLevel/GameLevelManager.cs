@@ -42,6 +42,15 @@ namespace MyGame.GameComponents.World
             }
         }      
 
+        public static void LoadLevel(int key)
+        {
+            if (key <= _gameLevels.Count)
+            {
+                _currentLevel = _gameLevels[key];
+                _currentLevel.LoadContent();
+            }
+        }
+
         public static void ResetLevel()
         {
             _currentLevel.Reset();
